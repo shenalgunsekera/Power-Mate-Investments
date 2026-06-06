@@ -110,16 +110,14 @@ html[lang="ta"] {
   * { border-color: var(--line); box-sizing: border-box; }
 
   html {
-    /* Smooth scrolling is handled by Lenis (see smooth-scroll.tsx).
-       Keep a native fallback only when Lenis is disabled. */
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem; /* keep anchor targets clear of the sticky header */
     -webkit-text-size-adjust: 100%;
     font-optical-sizing: auto;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    @supports not (animation-timeline: scroll()) {
-      html { scroll-behavior: auto; }
-    }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
   }
 
   body {

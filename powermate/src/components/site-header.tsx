@@ -53,15 +53,15 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
       <div className="container-pm flex h-18 items-center justify-between gap-4 py-2">
         <Logo locale={locale} />
 
-        <nav aria-label="Primary" className="hidden lg:block">
-          <ul className="flex items-center gap-1">
+        <nav aria-label="Primary" className="hidden xl:block">
+          <ul className="flex items-center gap-0.5">
             {nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={localeHref(locale, item.href)}
                   aria-current={isActive(item.href) ? "page" : undefined}
                   className={cn(
-                    "relative rounded-pill px-3.5 py-2 text-[0.95rem] font-medium transition-colors",
+                    "relative whitespace-nowrap rounded-pill px-3 py-2 text-[0.92rem] font-medium transition-colors",
                     isActive(item.href)
                       ? "text-brand-800"
                       : "text-ink-soft hover:text-brand-800",
@@ -69,7 +69,7 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
                 >
                   {item.label}
                   {isActive(item.href) && (
-                    <span className="absolute inset-x-3.5 -bottom-px h-0.5 rounded-full bg-brand-600" />
+                    <span className="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-brand-600" />
                   )}
                 </Link>
               </li>
@@ -80,7 +80,7 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
         <div className="flex items-center gap-2">
           <a
             href={company.phoneHref}
-            className="hidden items-center gap-2 rounded-pill px-3 py-2 text-sm font-semibold text-brand-800 transition-colors hover:bg-brand-50 xl:inline-flex"
+            className="hidden items-center gap-2 rounded-pill px-3 py-2 text-sm font-semibold text-brand-800 transition-colors hover:bg-brand-50 2xl:inline-flex"
           >
             <Phone className="size-4" aria-hidden />
             <span className="tabular">{company.hotline}</span>
@@ -101,7 +101,7 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? dict.nav.close : dict.nav.menu}
             aria-expanded={open}
-            className="inline-flex size-11 items-center justify-center rounded-pill text-brand-800 hover:bg-brand-50 lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-pill text-brand-800 hover:bg-brand-50 xl:hidden"
           >
             {open ? <X className="size-6" /> : <Menu className="size-6" />}
           </button>
@@ -110,7 +110,7 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-line bg-bg lg:hidden">
+        <div className="border-t border-line bg-bg xl:hidden">
           <nav aria-label="Mobile" className="container-pm py-4">
             <ul className="flex flex-col gap-1">
               {nav.map((item) => (

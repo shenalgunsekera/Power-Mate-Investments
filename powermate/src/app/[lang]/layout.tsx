@@ -11,7 +11,6 @@ import { locales, isLocale, localeDir, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { SmoothScroll } from "@/components/smooth-scroll";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { PageLoader } from "@/components/page-loader";
 
@@ -79,10 +78,9 @@ export default async function LangLayout({
   const dict = await getDictionary(locale);
 
   return (
-    <html lang={locale} dir={localeDir[locale]} className={`${fontVars} h-full`}>
+    <html lang={locale} dir={localeDir[locale]} data-scroll-behavior="smooth" className={`${fontVars} h-full`}>
       <body className="min-h-full flex flex-col antialiased">
         <PageLoader />
-        <SmoothScroll />
         <ScrollProgress />
         <div className="grain-overlay" aria-hidden />
         <a

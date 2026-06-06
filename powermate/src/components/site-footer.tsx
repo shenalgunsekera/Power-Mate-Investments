@@ -22,7 +22,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
     <footer className="bg-(image:--grad-dark) text-brand-100">
       <div className="container-pm grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
         <div className="flex flex-col gap-4">
-          <Logo locale={locale} variant="wordmark" />
+          <Logo locale={locale} variant="wordmark" tone="light" />
           <p className="max-w-xs text-sm leading-relaxed text-brand-200">{dict.footer.blurb}</p>
           <div className="mt-1 flex items-center gap-2.5">
             <a
