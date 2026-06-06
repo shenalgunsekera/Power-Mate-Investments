@@ -41,6 +41,11 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
     return href === "/" ? pathname === full : pathname.startsWith(full);
   };
 
+  // Sinhala/Tamil labels are far wider than English; a 7-item desktop bar
+  // can't fit them in the content width without overflowing. Show the inline
+  // nav only for English; si/ta use the (compact, complete) menu instead.
+  const inlineNav = locale === "en";
+
   return (
     <header
       className={cn(
@@ -53,7 +58,7 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
       <div className="container-pm flex h-18 items-center justify-between gap-4 py-2">
         <Logo locale={locale} />
 
-        <nav aria-label="Primary" className="hidden xl:block">
+        <nav aria-label="Primary" className={cn("hidden", inlineNav && "xl:block")}>
           <ul className="flex items-center gap-0.5">
             {nav.map((item) => (
               <li key={item.href}>
@@ -101,7 +106,10 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? dict.nav.close : dict.nav.menu}
             aria-expanded={open}
-            className="inline-flex size-11 items-center justify-center rounded-pill text-brand-800 hover:bg-brand-50 xl:hidden"
+            className={cn(
+              "inline-flex size-11 items-center justify-center rounded-pill text-brand-800 hover:bg-brand-50",
+              inlineNav && "xl:hidden",
+            )}
           >
             {open ? <X className="size-6" /> : <Menu className="size-6" />}
           </button>
@@ -110,7 +118,7 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-line bg-bg xl:hidden">
+        <div className={cn("border-t border-line bg-bg", inlineNav && "xl:hidden")}>
           <nav aria-label="Mobile" className="container-pm py-4">
             <ul className="flex flex-col gap-1">
               {nav.map((item) => (

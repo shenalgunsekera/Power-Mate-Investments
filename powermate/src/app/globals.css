@@ -126,6 +126,7 @@ html[lang="ta"] {
     font-family: var(--font-text);
     font-size: 1rem;
     line-height: 1.65;
+    overflow-x: clip; /* guard against accidental horizontal scroll */
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     font-kerning: normal;
