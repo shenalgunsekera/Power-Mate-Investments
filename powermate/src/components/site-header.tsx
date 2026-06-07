@@ -32,6 +32,7 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
     { href: "/products", label: dict.nav.products },
     { href: "/branches", label: dict.nav.branches },
     { href: "/careers", label: dict.nav.careers },
+    { href: "/gallery", label: dict.nav.gallery },
     { href: "/faqs", label: dict.nav.faqs },
     { href: "/contact", label: dict.nav.contact },
   ];

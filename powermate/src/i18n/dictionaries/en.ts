@@ -47,6 +47,7 @@ const en = {
     careers: "Careers",
     contact: "Contact Us",
     faqs: "FAQs",
+    gallery: "Gallery",
     apply: "Apply Now",
     skipToContent: "Skip to content",
     menu: "Menu",
@@ -199,6 +200,13 @@ const en = {
     title: "From coast to hill country",
     subtitle:
       "25 branches across all nine provinces. Wherever you are in Sri Lanka, a Power Mate officer is near.",
+  },
+
+  gallery: {
+    eyebrow: "Gallery",
+    title: "Moments from the communities we serve",
+    subtitle:
+      "Faces, places and everyday life across Sri Lanka, from the hill country to the southern coast.",
   },
 
   finalCta: {

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Locale } from "@/i18n/config";
 import { localeHref } from "@/lib/utils";
@@ -6,12 +5,12 @@ import { company } from "@/data/site";
 
 /**
  * Brand lockup. The source asset (`/logo-powermate.png`) is a full square
- * lockup (mark + wordmark + tagline), which renders illegibly small at header
- * sizes. So we crop the image down to just the interlocking mark and, for the
- * `wordmark` variant, pair it with crisp live text.
+ * lockup (mark + wordmark + tagline) that renders illegibly small at header
+ * sizes, so we crop it down to just the interlocking mark using a zoomed
+ * background-image (predictable framing). The `wordmark` variant pairs the
+ * mark with crisp live text.
  *
- * `tone` controls the text colour: `dark` for light surfaces (header),
- * `light` for dark surfaces (footer).
+ * `tone`: `dark` text for light surfaces (header), `light` for dark (footer).
  */
 export function Logo({
   locale,
@@ -31,17 +30,16 @@ export function Logo({
       aria-label={company.name}
       className={`inline-flex shrink-0 items-center gap-2.5 ${className ?? ""}`}
     >
-      {/* Crop the full lockup down to the mark only */}
-      <span className="relative block size-10 shrink-0 overflow-hidden">
-        <Image
-          src="/logo-powermate.png"
-          alt=""
-          width={500}
-          height={500}
-          priority
-          className="absolute left-1/2 -top-1.75 h-18 w-18 max-w-none -translate-x-1/2 object-contain"
-        />
-      </span>
+      {/* Mark only — zoom past the baked-in wordmark/tagline */}
+      <span
+        aria-hidden
+        className="block size-10 shrink-0 bg-no-repeat"
+        style={{
+          backgroundImage: "url(/logo-powermate.png)",
+          backgroundSize: "190%",
+          backgroundPosition: "50% 20%",
+        }}
+      />
       {variant === "wordmark" && (
         <span className="flex flex-col leading-none">
           <span

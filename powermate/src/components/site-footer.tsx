@@ -14,6 +14,7 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
     { href: "/about", label: dict.nav.about },
     { href: "/branches", label: dict.nav.branches },
     { href: "/careers", label: dict.nav.careers },
+    { href: "/gallery", label: dict.nav.gallery },
     { href: "/faqs", label: dict.nav.faqs },
     { href: "/contact", label: dict.nav.contact },
   ];

@@ -6,11 +6,12 @@
    ============================================================ */
 
 :root {
-  /* Brand maroon scale (OKLCH, hue ~18-22) */
-  --brand-950: oklch(22% 0.08 18);
-  --brand-900: oklch(26% 0.1 18);
-  --brand-800: oklch(31% 0.12 18);
-  --brand-700: oklch(35% 0.13 18);
+  /* Brand maroon scale (OKLCH, hue ~18-22) — dark end lifted so maroon
+     surfaces read as a warm, lighter crimson rather than near-black. */
+  --brand-950: oklch(31% 0.105 18);
+  --brand-900: oklch(36% 0.125 18);
+  --brand-800: oklch(41% 0.145 19);
+  --brand-700: oklch(45% 0.165 20);
   --brand-600: oklch(42% 0.16 20);
   --brand-500: oklch(48% 0.19 22);
   --brand-400: oklch(58% 0.17 22);
@@ -34,9 +35,9 @@
   --warning: oklch(72% 0.15 70);
   --danger: oklch(55% 0.2 25);
 
-  /* Signature gradient — logo's maroon→crimson fade */
-  --grad-brand: linear-gradient(135deg, var(--brand-900) 0%, var(--brand-600) 60%, var(--brand-500) 100%);
-  --grad-dark: linear-gradient(160deg, var(--brand-950) 0%, var(--brand-800) 100%);
+  /* Signature gradient — starts from the middle of the ramp (lighter crimson) */
+  --grad-brand: linear-gradient(135deg, var(--brand-700) 0%, var(--brand-600) 55%, var(--brand-500) 100%);
+  --grad-dark: linear-gradient(160deg, var(--brand-800) 0%, var(--brand-600) 100%);
 
   /* Font wiring */
   --font-heading: var(--font-display, ui-sans-serif), system-ui, sans-serif;
