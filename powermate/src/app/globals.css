@@ -6,16 +6,17 @@
    ============================================================ */
 
 :root {
-  /* Brand maroon scale (OKLCH, hue ~18-22) — dark end lifted so maroon
-     surfaces read as a warm, lighter crimson rather than near-black. */
-  --brand-950: oklch(31% 0.105 18);
-  --brand-900: oklch(36% 0.125 18);
-  --brand-800: oklch(41% 0.145 19);
-  --brand-700: oklch(45% 0.165 20);
-  --brand-600: oklch(42% 0.16 20);
-  --brand-500: oklch(48% 0.19 22);
-  --brand-400: oklch(58% 0.17 22);
-  --brand-300: oklch(72% 0.11 22);
+  /* Brand maroon scale (OKLCH, hue ~18-22) — whole working range lifted so
+     maroon surfaces read as a lighter, warmer crimson. 700/800 stay dark
+     enough to pass contrast as text on white. */
+  --brand-950: oklch(33% 0.115 18);
+  --brand-900: oklch(38% 0.135 18);
+  --brand-800: oklch(42% 0.15 19);
+  --brand-700: oklch(44% 0.165 20);
+  --brand-600: oklch(48% 0.185 21);
+  --brand-500: oklch(53% 0.2 23);
+  --brand-400: oklch(61% 0.175 24);
+  --brand-300: oklch(73% 0.11 23);
   --brand-200: oklch(85% 0.06 22);
   --brand-100: oklch(92% 0.03 22);
   --brand-50: oklch(96% 0.014 22);

@@ -50,9 +50,9 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             className="object-cover object-[60%_40%]"
           />
         </motion.div>
-        <div className="absolute inset-0 bg-linear-to-r from-brand-950/95 via-brand-950/72 to-brand-900/25" />
-        <div className="absolute inset-x-0 bottom-0 h-2/5 bg-linear-to-t from-brand-950/90 to-transparent" />
-        <div className="absolute inset-0 [box-shadow:inset_0_0_180px_60px_oklch(22%_0.08_18_/_0.7)]" />
+        <div className="absolute inset-0 bg-linear-to-r from-brand-950/85 via-brand-900/40 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-brand-950/65 to-transparent" />
+        <div className="absolute inset-0 [box-shadow:inset_0_0_150px_50px_oklch(33%_0.1_18_/_0.35)]" />
       </div>
 
       {/* Content — vertically centered, sized to fit one viewport */}
