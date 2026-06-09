@@ -9,20 +9,19 @@
 export const company = {
   name: "Power Mate Investment",
   tagline: "Strengthening Your Financial Power",
-  // TODO: replace with real contact details
-  phone: "+94 11 234 5678",
-  phoneHref: "tel:+94112345678",
-  hotline: "1234",
+  phone: "011 2080 8888",
+  phoneHref: "tel:+941120808888",
+  hotline: "011 2080 8888",
   email: "info@powermate.lk",
-  whatsapp: "+94 77 123 4567",
-  whatsappHref: "https://wa.me/94771234567",
+  whatsapp: "070 708 0033",
+  whatsappHref: "https://wa.me/94707080033",
   facebook: "https://www.facebook.com/powermateinvestments",
-  address: "No. 123, Galle Road, Colombo 03, Sri Lanka",
+  address: "973/3A, Oruwala, Athurugiriya, Colombo",
   hoursWeekday: "8:30 AM – 5:00 PM",
   hoursSaturday: "8:30 AM – 1:00 PM",
-  established: 2009,
-  branchCount: 25,
-  customersServed: "75,000+",
+  established: 2020,
+  branchCount: 6,
+  customersServed: "10,000+",
 } as const;
 
 export type ProductKey =
@@ -78,30 +77,15 @@ export interface Branch {
   lng: number;
 }
 
-/** ⚠️ PLACEHOLDER branch network — replace with the real list. */
+/** Branch network — currently Central and Uva provinces. (Coordinates are
+ *  approximate town centroids; refine with exact branch locations when available.) */
 export const branches: Branch[] = [
-  { id: "colombo", city: "Colombo", district: "Colombo", province: "Western", address: "No. 123, Galle Road, Colombo 03", phone: "+94 11 234 5678", lat: 6.9271, lng: 79.8612 },
-  { id: "kandy", city: "Kandy", district: "Kandy", province: "Central", address: "No. 45, Peradeniya Road, Kandy", phone: "+94 81 223 4567", lat: 7.2906, lng: 80.6337 },
-  { id: "galle", city: "Galle", district: "Galle", province: "Southern", address: "No. 78, Wakwella Road, Galle", phone: "+94 91 224 5678", lat: 6.0535, lng: 80.221 },
-  { id: "jaffna", city: "Jaffna", district: "Jaffna", province: "Northern", address: "No. 12, Hospital Road, Jaffna", phone: "+94 21 222 3456", lat: 9.6615, lng: 80.0255 },
-  { id: "kurunegala", city: "Kurunegala", district: "Kurunegala", province: "North Western", address: "No. 56, Colombo Road, Kurunegala", phone: "+94 37 222 4567", lat: 7.4863, lng: 80.3623 },
-  { id: "anuradhapura", city: "Anuradhapura", district: "Anuradhapura", province: "North Central", address: "No. 9, Maithripala Senanayake Mw, Anuradhapura", phone: "+94 25 222 5678", lat: 8.3114, lng: 80.4037 },
-  { id: "batticaloa", city: "Batticaloa", district: "Batticaloa", province: "Eastern", address: "No. 34, Trinco Road, Batticaloa", phone: "+94 65 222 6789", lat: 7.7102, lng: 81.6924 },
-  { id: "ratnapura", city: "Ratnapura", district: "Ratnapura", province: "Sabaragamuwa", address: "No. 21, Bandaranaike Mw, Ratnapura", phone: "+94 45 222 7890", lat: 6.6828, lng: 80.3992 },
-  { id: "badulla", city: "Badulla", district: "Badulla", province: "Uva", address: "No. 67, Lower King Street, Badulla", phone: "+94 55 222 8901", lat: 6.9934, lng: 81.055 },
-  { id: "matara", city: "Matara", district: "Matara", province: "Southern", address: "No. 88, Anagarika Dharmapala Mw, Matara", phone: "+94 41 222 9012", lat: 5.9485, lng: 80.5353 },
-  { id: "negombo", city: "Negombo", district: "Gampaha", province: "Western", address: "No. 102, Main Street, Negombo", phone: "+94 31 222 0123", lat: 7.2083, lng: 79.8358 },
-  { id: "trincomalee", city: "Trincomalee", district: "Trincomalee", province: "Eastern", address: "No. 14, Dockyard Road, Trincomalee", phone: "+94 26 222 1234", lat: 8.5874, lng: 81.2152 },
+  { id: "nuwara-eliya", city: "Nuwara Eliya", district: "Nuwara Eliya", province: "Central", address: "126/6, Hawa Eliya, Nuwara Eliya", phone: "071 128 0033", lat: 6.9497, lng: 80.7891 },
+  { id: "kandy", city: "Kandy", district: "Kandy", province: "Central", address: "No. 97, Sri Dhamma Dassi Mawatha, Kandy", phone: "071 411 0033", lat: 7.2906, lng: 80.6337 },
+  { id: "matale", city: "Matale", district: "Matale", province: "Central", address: "92 F, Kandy Road, Matale", phone: "070 771 0033", lat: 7.4675, lng: 80.6234 },
+  { id: "welimada", city: "Welimada", district: "Badulla", province: "Uva", address: "No. 04, Nuwara Eliya Road, Welimada", phone: "070 411 0033", lat: 6.9056, lng: 80.9136 },
+  { id: "bandarawela", city: "Bandarawela", district: "Badulla", province: "Uva", address: "Badulla Road, Bindunuwewa, Bandarawela", phone: "057 212 1008", lat: 6.8329, lng: 80.987 },
+  { id: "mahiyanganaya", city: "Mahiyanganaya", district: "Badulla", province: "Uva", address: "No. 38, Upper Floor, Public Market, Mahiyanganaya", phone: "055 225 7367", lat: 7.3281, lng: 81.001 },
 ];
 
-export const provinces = [
-  "Western",
-  "Central",
-  "Southern",
-  "Northern",
-  "Eastern",
-  "North Western",
-  "North Central",
-  "Uva",
-  "Sabaragamuwa",
-] as const;
+export const provinces = ["Central", "Uva"] as const;

@@ -4,6 +4,7 @@ import { ArrowRight, TrendingUp, Heart, Star } from "lucide-react";
 import { isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { localeHref } from "@/lib/utils";
+import { company } from "@/data/site";
 import { CtaBand } from "@/components/sections/cta-band";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/careers">): Promise<Metadata> {
@@ -107,7 +108,7 @@ export default async function CareersPage({ params }: PageProps<"/[lang]/careers
             <h3 className="font-display text-xl font-bold text-ink">{c.noOpeningTitle}</h3>
             <p className="mt-2 text-ink-soft">{c.noOpeningText}</p>
             <a
-              href={`mailto:${dict.footer.contactTitle}`}
+              href={`mailto:${company.email}`}
               className="mt-5 inline-flex items-center gap-2 rounded-pill border border-line-strong px-5 py-2.5 text-sm font-semibold text-brand-800 transition-colors hover:border-brand-300 hover:bg-brand-50"
             >
               {c.sendCv}

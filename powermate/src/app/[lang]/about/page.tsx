@@ -4,7 +4,7 @@ import Image from "next/image";
 import { isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { CtaBand } from "@/components/sections/cta-band";
-import { HeartHandshake, Zap, Users, Shield } from "lucide-react";
+import { HeartHandshake, Sparkles, Users, Shield, Sprout, ExternalLink } from "lucide-react";
 
 const ABOUT_IMAGE =
   "https://images.unsplash.com/photo-1558871624-7b507467240f?auto=format&fit=crop&w=1920&q=80";
@@ -23,7 +23,7 @@ export default async function AboutPage({ params }: PageProps<"/[lang]/about">) 
   const dict = await getDictionary(locale);
   const a = dict.about;
 
-  const valueIcons = [HeartHandshake, Zap, Users, Shield];
+  const valueIcons = [Shield, HeartHandshake, Sparkles, Users, Sprout];
 
   return (
     <>
@@ -124,6 +124,62 @@ export default async function AboutPage({ params }: PageProps<"/[lang]/about">) 
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Management team */}
+      <section className="section-pad bg-surface">
+        <div className="container-pm">
+          <h2 className="font-display text-[clamp(1.8rem,4vw,2.8rem)] font-bold tracking-[-0.02em] text-ink">
+            {a.teamTitle}
+          </h2>
+          <p className="mt-3 max-w-[55ch] text-[1.05rem] leading-relaxed text-ink-soft">
+            {a.teamSubtitle}
+          </p>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {a.team.map((member) => (
+              <article
+                key={member.name}
+                className="flex flex-col rounded-3xl border border-line bg-bg p-7 transition-shadow hover:shadow-(--shadow-md)"
+              >
+                {/* Avatar: photo over an initials fallback (shows initials if the
+                    photo file is missing) */}
+                <div
+                  className="flex size-20 items-center justify-center overflow-hidden rounded-2xl bg-cover bg-center font-display text-xl font-bold text-white shadow-(--shadow-brand)"
+                  style={{ backgroundImage: `url(${member.photo}), var(--grad-brand)` }}
+                  aria-hidden
+                >
+                  {member.initials}
+                </div>
+
+                <h3 className="mt-5 font-display text-xl font-bold tracking-[-0.01em] text-ink">
+                  {member.name}
+                </h3>
+                <p className="mt-1 text-sm font-semibold text-brand-700">{member.role}</p>
+                <p className="mt-4 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">
+                  {member.bio}
+                </p>
+
+                {member.links.length > 0 && (
+                  <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 border-t border-line pt-5">
+                    {member.links.map((link) => (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-700 transition-colors hover:text-brand-500"
+                      >
+                        <ExternalLink className="size-3.5" aria-hidden />
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </article>
+            ))}
           </div>
         </div>
       </section>
