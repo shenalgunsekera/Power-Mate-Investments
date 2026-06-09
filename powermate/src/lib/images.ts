@@ -6,6 +6,8 @@
 const BASE = "https://images.unsplash.com/photo-";
 
 export const img = {
+  // Sri Lanka — bustling local market: the traders and small businesses Power Mate backs
+  marketLife: `${BASE}1548285788-6b5c92110fee`,
   // Sri Lanka — Nine Arches Bridge, Ella (Gemma Fjam)
   nineArches: `${BASE}1574611122955-5baa61496637`,
   // Sri Lanka — Blue train at Nine Arches Bridge (Hendrik Cornelissen)

@@ -142,28 +142,39 @@ export default async function AboutPage({ params }: PageProps<"/[lang]/about">) 
             {a.team.map((member) => (
               <article
                 key={member.name}
-                className="flex flex-col rounded-3xl border border-line bg-bg p-7 transition-shadow hover:shadow-(--shadow-md)"
+                className="group relative flex flex-col overflow-hidden rounded-3xl border border-line bg-bg p-7 transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-(--shadow-lg)"
               >
-                {/* Avatar: photo over an initials fallback (shows initials if the
-                    photo file is missing) */}
+                {/* soft maroon glow on hover */}
                 <div
-                  className="flex size-20 items-center justify-center overflow-hidden rounded-2xl bg-cover bg-center font-display text-xl font-bold text-white shadow-(--shadow-brand)"
-                  style={{ backgroundImage: `url(${member.photo}), var(--grad-brand)` }}
                   aria-hidden
-                >
-                  {member.initials}
+                  className="pointer-events-none absolute -right-20 -top-20 size-44 rounded-full bg-brand-100 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-70"
+                />
+
+                <div className="relative flex items-center gap-5">
+                  {/* Portrait (maroon block shows underneath while loading) */}
+                  <div className="relative size-24 shrink-0 overflow-hidden rounded-2xl bg-(image:--grad-brand) shadow-(--shadow-md) ring-1 ring-black/5">
+                    <Image
+                      src={member.photo}
+                      alt={member.name}
+                      fill
+                      sizes="96px"
+                      className="object-cover object-[center_22%] transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-display text-xl font-bold leading-tight tracking-[-0.01em] text-ink">
+                      {member.name}
+                    </h3>
+                    <p className="mt-1.5 text-sm font-semibold text-brand-700">{member.role}</p>
+                  </div>
                 </div>
 
-                <h3 className="mt-5 font-display text-xl font-bold tracking-[-0.01em] text-ink">
-                  {member.name}
-                </h3>
-                <p className="mt-1 text-sm font-semibold text-brand-700">{member.role}</p>
-                <p className="mt-4 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">
+                <p className="relative mt-5 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">
                   {member.bio}
                 </p>
 
                 {member.links.length > 0 && (
-                  <div className="mt-5 flex flex-wrap gap-x-4 gap-y-2 border-t border-line pt-5">
+                  <div className="relative mt-5 flex flex-wrap gap-x-4 gap-y-2 border-t border-line pt-5">
                     {member.links.map((link) => (
                       <a
                         key={link.href}
