@@ -10,27 +10,27 @@ const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const photos = [
   {
     src: sized(img.nineArches, { w: 800, h: 600, q: 80 }),
-    alt: "Nine Arches Bridge, Ella, Sri Lanka: an iconic arch viaduct amid tropical forest",
-    caption: "Ella, Hill Country",
+    alt: "The Nine Arches Bridge near Ella in the Uva hill country",
+    caption: "Ella, Uva Province",
     credit: "Nine Arches Bridge",
   },
   {
-    src: sized(img.mirisssaBeach, { w: 800, h: 600, q: 80 }),
-    alt: "Coconut Tree Hill, Mirissa, Sri Lanka: palm trees on the southern coast",
-    caption: "Mirissa, Southern Coast",
-    credit: "Coconut Tree Hill",
-  },
-  {
-    src: sized(img.tukTuks, { w: 800, h: 600, q: 80 }),
-    alt: "Tuk-tuks in Sri Lanka with surfboards: everyday transport across the island",
-    caption: "Islandwide",
-    credit: "Everyday Sri Lanka",
+    src: sized(img.teaCountry, { w: 800, h: 600, q: 80 }),
+    alt: "Tea plantations carpeting the hills around Nuwara Eliya",
+    caption: "Nuwara Eliya, Central",
+    credit: "Tea country",
   },
   {
     src: sized(img.kandyCommunity, { w: 800, h: 600, q: 80 }),
-    alt: "People at the Nelligala temple, Kandy: Sri Lankan community life",
+    alt: "A hilltop temple near Kandy in the Central Province",
     caption: "Kandy, Central Province",
     credit: "Nelligala Temple",
+  },
+  {
+    src: sized(img.hillCountry, { w: 800, h: 600, q: 80 }),
+    alt: "Misty green highlands of Sri Lanka's hill country",
+    caption: "Uva Highlands",
+    credit: "Hill country",
   },
 ];
 

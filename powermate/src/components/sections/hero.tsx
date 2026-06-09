@@ -124,7 +124,7 @@ export function Hero({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             ))}
             <a
               href={company.phoneHref}
-              className="ms-auto hidden items-center gap-2 rounded-pill border border-white/20 px-3.5 py-1.5 text-sm font-medium text-brand-100 transition-colors hover:border-white/50 hover:text-white md:inline-flex"
+              className="ms-auto hidden items-center gap-2 whitespace-nowrap rounded-pill border border-white/20 px-3.5 py-1.5 text-sm font-medium text-brand-100 transition-colors hover:border-white/50 hover:text-white md:inline-flex"
             >
               <Phone className="size-4" aria-hidden />
               <span className="tabular font-bold text-white">{company.hotline}</span>

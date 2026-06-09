@@ -86,7 +86,7 @@ export function SiteHeader({ locale, dict }: { locale: Locale; dict: Dictionary 
         <div className="flex items-center gap-2">
           <a
             href={company.phoneHref}
-            className="hidden items-center gap-2 rounded-pill px-3 py-2 text-sm font-semibold text-brand-800 transition-colors hover:bg-brand-50 2xl:inline-flex"
+            className="hidden shrink-0 items-center gap-2 whitespace-nowrap rounded-pill px-3 py-2 text-sm font-semibold text-brand-800 transition-colors hover:bg-brand-50 2xl:inline-flex"
           >
             <Phone className="size-4" aria-hidden />
             <span className="tabular">{company.hotline}</span>

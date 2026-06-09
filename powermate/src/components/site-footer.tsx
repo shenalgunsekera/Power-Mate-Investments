@@ -103,11 +103,6 @@ export function SiteFooter({ locale, dict }: { locale: Locale; dict: Dictionary 
           </p>
           <p className="max-w-xl sm:text-end">{dict.footer.licence}</p>
         </div>
-        <div className="container-pm pb-6">
-          <p className="rounded-lg bg-white/5 px-3 py-2 text-[0.7rem] text-brand-300/80">
-            ⚠️ {dict.footer.placeholderNote}
-          </p>
-        </div>
       </div>
     </footer>
   );

@@ -10,6 +10,10 @@ export const img = {
   marketLife: `${BASE}1548285788-6b5c92110fee`,
   // Sri Lanka — Nine Arches Bridge, Ella (Gemma Fjam)
   nineArches: `${BASE}1574611122955-5baa61496637`,
+  // Sri Lanka — tea plantation, Nuwara Eliya hill country (Central Province)
+  teaCountry: `${BASE}1760533852055-724d3a50dcbd`,
+  // Sri Lanka — misty highland hills (Uva)
+  hillCountry: `${BASE}1585171353887-4a6caf1e852e`,
   // Sri Lanka — Blue train at Nine Arches Bridge (Hendrik Cornelissen)
   blueTrain: `${BASE}1566296314736-6eaac1ca0cb9`,
   // Sri Lanka — Mirissa beach, Coconut Tree Hill (Dinuka Lankaloka)

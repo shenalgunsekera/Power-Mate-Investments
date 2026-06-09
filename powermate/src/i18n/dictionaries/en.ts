@@ -395,7 +395,6 @@ const en = {
     followUs: "Follow us",
     rights: "All rights reserved.",
     licence: "A registered finance company. Lending is subject to terms, conditions and credit assessment.",
-    placeholderNote: "Contact details shown are placeholders pending the real company information.",
   },
 };
 
