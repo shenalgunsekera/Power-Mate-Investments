@@ -138,7 +138,7 @@ export default async function AboutPage({ params }: PageProps<"/[lang]/about">) 
             {a.teamSubtitle}
           </p>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:max-w-4xl">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {a.team.map((member) => (
               <article
                 key={member.name}
@@ -151,15 +151,21 @@ export default async function AboutPage({ params }: PageProps<"/[lang]/about">) 
                 />
 
                 <div className="relative flex items-center gap-5">
-                  {/* Portrait (maroon block shows underneath while loading) */}
+                  {/* Portrait, or a branded initials avatar until a photo is added */}
                   <div className="relative size-24 shrink-0 overflow-hidden rounded-2xl bg-(image:--grad-brand) shadow-(--shadow-md) ring-1 ring-black/5">
-                    <Image
-                      src={member.photo}
-                      alt={member.name}
-                      fill
-                      sizes="96px"
-                      className="object-cover object-[center_22%] transition-transform duration-500 group-hover:scale-105"
-                    />
+                    {member.photo ? (
+                      <Image
+                        src={member.photo}
+                        alt={member.name}
+                        fill
+                        sizes="96px"
+                        className="object-cover object-[center_22%] transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <span className="flex size-full items-center justify-center font-display text-xl font-bold text-white">
+                        {member.initials}
+                      </span>
+                    )}
                   </div>
                   <div className="min-w-0">
                     <h3 className="font-display text-xl font-bold leading-tight tracking-[-0.01em] text-ink">

@@ -140,12 +140,6 @@ export function LoanCalculator({ locale, dict }: { locale: Locale; dict: Diction
               </div>
             </div>
 
-            <div className="flex items-center justify-between rounded-xl bg-brand-50 px-4 py-3 text-sm">
-              <span className="text-ink-soft">{c.rateLabel}</span>
-              <span className="font-display font-bold text-brand-700 tabular">
-                {terms.minRate}%
-              </span>
-            </div>
           </div>
 
           {/* Result */}

@@ -252,6 +252,14 @@ const en = {
     teamSubtitle: "The people guiding Power Mate Investment.",
     team: [
       {
+        name: "Dhammika Gunasena",
+        role: "Director",
+        photo: "",
+        initials: "DG",
+        bio: "Director with over 25 years of leadership across the insurance, telecommunications, FMCG and financial-services sectors. He brings deep expertise in sales and marketing, insurance operations, bancassurance, underwriting, finance and business development, with a professional network spanning the UAE, Singapore, China and Sri Lanka. An alumnus of Dharmaraja College, he holds higher-education qualifications from Wayamba University of Sri Lanka.",
+        links: [] as { label: string; href: string }[],
+      },
+      {
         name: "Rukmal Bandaranayake",
         role: "HRM Consultant",
         photo: "/team/rukmal.jpg",

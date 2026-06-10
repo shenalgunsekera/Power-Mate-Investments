@@ -12,7 +12,7 @@ export const company = {
   phone: "011 2080 8888",
   phoneHref: "tel:+941120808888",
   hotline: "011 2080 8888",
-  email: "info@powermate.lk",
+  email: "info@pmi.lk",
   whatsapp: "070 708 0033",
   whatsappHref: "https://wa.me/94707080033",
   facebook: "https://www.facebook.com/powermateinvestments",

@@ -116,6 +116,7 @@ html[lang="ta"] {
     scroll-padding-top: 6rem; /* keep anchor targets clear of the sticky header */
     -webkit-text-size-adjust: 100%;
     font-optical-sizing: auto;
+    overflow-x: clip; /* no horizontal scroll at the root (clip keeps sticky working) */
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -129,6 +130,9 @@ html[lang="ta"] {
     font-size: 1rem;
     line-height: 1.65;
     overflow-x: clip; /* guard against accidental horizontal scroll */
+    width: 100%;
+    max-width: 100%;
+    position: relative;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     font-kerning: normal;
