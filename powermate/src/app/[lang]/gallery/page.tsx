@@ -46,7 +46,7 @@ function imagesFor(dir: string): string[] {
 function GalleryGrid({ images, alt }: { images: string[]; alt: string }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {images.map((src) => (
+      {images.map((src, i) => (
         <div
           key={src}
           className="group relative aspect-4/3 overflow-hidden rounded-2xl bg-brand-100"
@@ -56,7 +56,9 @@ function GalleryGrid({ images, alt }: { images: string[]; alt: string }) {
             alt={alt}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
+            className={`object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05] ${
+              i === 0 ? "object-top" : "object-center"
+            }`}
           />
         </div>
       ))}
