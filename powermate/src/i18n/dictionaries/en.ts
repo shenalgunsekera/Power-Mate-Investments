@@ -257,7 +257,7 @@ const en = {
         photo: "/team/dhammika.jpg",
         initials: "DG",
         bio: "Director with over 25 years of leadership across the insurance, telecommunications, FMCG and financial-services sectors. He brings deep expertise in sales and marketing, insurance operations, bancassurance, underwriting, finance and business development, with a professional network spanning the UAE, Singapore, China and Sri Lanka. An alumnus of Dharmaraja College, he holds higher-education qualifications from Wayamba University of Sri Lanka.",
-        links: [] as { label: string; href: string }[],
+        links: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/dhammika-gunasena-864243b7" }],
       },
       {
         name: "Rukmal Bandaranayake",
@@ -276,7 +276,7 @@ const en = {
         photo: "/team/shanika.jpg",
         initials: "SF",
         bio: "Attorney-at-Law and HR professional with over 19 years in Human Resources and 12 years in lecturing and corporate training. She specializes in strategic planning, negotiation, leadership development and customer-service excellence, and is a member of the Bar Association of Sri Lanka and Toastmasters International.",
-        links: [] as { label: string; href: string }[],
+        links: [{ label: "LinkedIn", href: "https://www.linkedin.com/in/shanika-perera-fonseka-2b1b211aa" }],
       },
     ],
   },
