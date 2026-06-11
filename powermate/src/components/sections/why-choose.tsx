@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { Zap, HeartHandshake, CalendarClock, MapPinned, type LucideIcon } from "lucide-react";
 import type { Dictionary } from "@/i18n/dictionaries";
-import { img, sized } from "@/lib/images";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/reveal";
 
 const icons: LucideIcon[] = [Zap, HeartHandshake, CalendarClock, MapPinned];
@@ -25,8 +24,8 @@ export function WhyChoose({ dict }: { dict: Dictionary }) {
           {/* Art-directed photo — the people behind the promise */}
           <Reveal kind="left" className="relative min-h-[22rem] overflow-hidden rounded-[1.75rem] lg:min-h-full">
             <Image
-              src={sized(img.kandyCommunity, { w: 900, h: 1100, q: 85 })}
-              alt="A community gathering at a temple in Kandy, the people Power Mate Investment serves"
+              src="/Locations/Kandy/Kandy.png"
+              alt="Kandy, Central Province, the communities Power Mate Investment serves"
               fill
               sizes="(max-width: 1024px) 100vw, 38vw"
               className="object-cover"
