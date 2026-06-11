@@ -21,7 +21,7 @@ const preview: Record<ProductKey, string> = {
   agriculture: img.ricePlanting,
   gold: img.goldJewelry,
   leasing: img.galleTukTuk,
-  insurance: img.mirisssaBeach,
+  insurance: "/Locations/Kandy/Vegitable%20seller/crash.png",
 };
 
 /** Local public images start with "/"; Unsplash ids go through the CDN sizer. */
