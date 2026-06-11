@@ -22,36 +22,12 @@ export async function generateMetadata({
   };
 }
 
-/** Four top sections; each holds one or more photo groups (sub-sections). */
-const SECTIONS: {
-  title: string;
-  subtitle: string;
-  groups: { dir: string; label?: string }[];
-}[] = [
-  {
-    title: "Our commitment to the customers we serve",
-    subtitle:
-      "Proud sponsors of the 2025 Annual Inter-Collegiate Cricket Tournament, organised by Dharmaraja College.",
-    groups: [{ dir: "community", label: "Annual Inter-Collegiate Cricket Tournament 2025 · Dharmaraja College" }],
-  },
-  {
-    title: "Our talent development and empowerment",
-    subtitle: "Investing in our team so they can serve you better.",
-    groups: [{ dir: "talent", label: "Corporate Etiquette & Professional Conduct" }],
-  },
-  {
-    title: "Our branch expansions",
-    subtitle: "Bringing Power Mate Investment closer to more communities.",
-    groups: [
-      { dir: "bandarawela", label: "Bandarawela branch opening" },
-      { dir: "mahiyanganaya", label: "Mahiyanganaya branch opening" },
-    ],
-  },
-  {
-    title: "Our commitment",
-    subtitle: "Standing with the communities we are proud to be part of.",
-    groups: [],
-  },
+/** Photo folders per top section / sub-section. Titles & labels are localized
+ *  (see each dictionary's `gallery.sections`); this only maps the image folders. */
+const SECTION_DIRS: string[][] = [
+  ["community"],
+  ["talent"],
+  ["bandarawela", "mahiyanganaya"],
 ];
 
 function imagesFor(dir: string): string[] {
@@ -99,12 +75,16 @@ export default async function GalleryPage({
   const dict = await getDictionary(locale);
   const g = dict.gallery;
 
-  const sections = SECTIONS.map((s) => ({
-    ...s,
-    groups: s.groups
-      .map((gr) => ({ ...gr, images: imagesFor(gr.dir) }))
-      .filter((gr) => gr.images.length > 0),
-  })).filter((s) => s.groups.length > 0);
+  const sections = SECTION_DIRS.map((dirs, i) => {
+    const meta = g.sections[i];
+    return {
+      title: meta?.title ?? "",
+      subtitle: meta?.subtitle ?? "",
+      groups: dirs
+        .map((dir, j) => ({ dir, label: meta?.groups[j]?.label, images: imagesFor(dir) }))
+        .filter((gr) => gr.images.length > 0),
+    };
+  }).filter((s) => s.groups.length > 0);
 
   return (
     <>

@@ -204,9 +204,30 @@ const en = {
 
   gallery: {
     eyebrow: "Gallery",
-    title: "Moments from the communities we serve",
+    title: "Moments that define Power Mate Investment",
     subtitle:
-      "Faces, places and everyday life across Sri Lanka, from the hill country to the southern coast.",
+      "A look at the milestones, people and communities behind our work, from branch openings to team training and community events.",
+    sections: [
+      {
+        title: "Our commitment to the customers we serve",
+        subtitle:
+          "Proud sponsors of the 2025 Annual Inter-Collegiate Cricket Tournament, organised by Dharmaraja College.",
+        groups: [{ label: "Annual Inter-Collegiate Cricket Tournament 2025 · Dharmaraja College" }],
+      },
+      {
+        title: "Our talent development and empowerment",
+        subtitle: "Investing in our team so they can serve you better.",
+        groups: [{ label: "Corporate Etiquette & Professional Conduct" }],
+      },
+      {
+        title: "Our branch expansions",
+        subtitle: "Bringing Power Mate Investment closer to more communities.",
+        groups: [
+          { label: "Bandarawela branch opening" },
+          { label: "Mahiyanganaya branch opening" },
+        ],
+      },
+    ],
   },
 
   finalCta: {
