@@ -20,7 +20,7 @@ export const company = {
   hoursWeekday: "8:30 AM – 5:00 PM",
   hoursSaturday: "8:30 AM – 1:00 PM",
   established: 2020,
-  branchCount: 6,
+  branchCount: 7,
   customersServed: "10,000+",
 } as const;
 
@@ -86,6 +86,7 @@ export const branches: Branch[] = [
   { id: "welimada", city: "Welimada", district: "Badulla", province: "Uva", address: "No. 04, Nuwara Eliya Road, Welimada", phone: "070 411 0033", lat: 6.9056, lng: 80.9136 },
   { id: "bandarawela", city: "Bandarawela", district: "Badulla", province: "Uva", address: "Badulla Road, Bindunuwewa, Bandarawela", phone: "057 212 1008", lat: 6.8329, lng: 80.987 },
   { id: "mahiyanganaya", city: "Mahiyanganaya", district: "Badulla", province: "Uva", address: "No. 38, Upper Floor, Public Market, Mahiyanganaya", phone: "055 225 7367", lat: 7.3281, lng: 81.001 },
+  { id: "weligama", city: "Weligama", district: "Matara", province: "Southern", address: "No. 146, Main Street, Weligama", phone: "071 411 0033", lat: 5.973, lng: 80.429 },
 ];
 
-export const provinces = ["Central", "Uva"] as const;
+export const provinces = ["Central", "Uva", "Southern"] as const;

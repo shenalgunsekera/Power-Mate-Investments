@@ -37,7 +37,10 @@ export function LeadForm({
     return e;
   }
 
-  async function onSubmit(ev: FormEvent<HTMLFormElement>) {
+  // The company's WhatsApp inbox (070 708 0033).
+  const WHATSAPP_NUMBER = "94707080033";
+
+  function onSubmit(ev: FormEvent<HTMLFormElement>) {
     ev.preventDefault();
     const form = ev.currentTarget;
     const fd = new FormData(form);
@@ -54,19 +57,29 @@ export function LeadForm({
       return;
     }
 
-    setStatus("submitting");
-    try {
-      const res = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, mode, locale }),
-      });
-      if (!res.ok) throw new Error("Request failed");
-      setStatus("success");
-      form.reset();
-    } catch {
-      setStatus("error");
-    }
+    const productName = data.product
+      ? dict.products.items[data.product as keyof typeof dict.products.items]?.name ?? data.product
+      : "";
+
+    // Clean, structured WhatsApp message
+    const lines = [
+      `*${mode === "apply" ? "New loan application" : "New inquiry"} — Power Mate Investment*`,
+      "",
+      `*Name:* ${data.name}`,
+      `*Phone:* ${data.phone}`,
+      data.email ? `*Email:* ${data.email}` : "",
+      productName ? `*Interested in:* ${productName}` : "",
+      data.branch ? `*Preferred branch:* ${data.branch}` : "",
+      data.amount ? `*Amount needed:* LKR ${data.amount}` : "",
+      data.message ? `\n*Message:*\n${data.message}` : "",
+    ].filter(Boolean);
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join("\n"))}`;
+    const win = window.open(url, "_blank", "noopener,noreferrer");
+    if (!win) window.location.href = url;
+
+    setStatus("success");
+    form.reset();
   }
 
   if (status === "success") {

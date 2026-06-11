@@ -77,7 +77,7 @@ const en = {
     ctaPrimary: "Apply Now",
     ctaSecondary: "Calculate Your Loan",
     ctaTertiary: "Find a Branch",
-    stat1Value: "6",
+    stat1Value: "7",
     stat1Label: "Branches",
     stat2Value: "10,000+",
     stat2Label: "Customers served",
@@ -145,7 +145,7 @@ const en = {
       { title: "Fast Approval", description: "Most applications are reviewed within 24 hours, so opportunity never waits on paperwork." },
       { title: "Trusted Partner", description: "Trusted by more than 10,000 customers, with transparent terms and no hidden surprises." },
       { title: "Flexible Repayment", description: "Plans that follow your income, weekly, monthly or seasonal, built around how you actually earn." },
-      { title: "Close to You", description: "Six branches across the Central and Uva provinces, with officers who speak your language and know your area." },
+      { title: "Close to You", description: "Seven branches across the Central, Uva and Southern provinces, with officers who speak your language and know your area." },
     ],
   },
 
@@ -182,7 +182,7 @@ const en = {
   branchLocator: {
     eyebrow: "Branch locator",
     title: "Find a branch near you",
-    subtitle: "Serving the Central and Uva provinces. Search by city or filter by province.",
+    subtitle: "Serving the Central, Uva and Southern provinces. Search by city or filter by province.",
     searchPlaceholder: "Search by city or district…",
     allProvinces: "All provinces",
     resultsOne: "branch found",
@@ -199,7 +199,7 @@ const en = {
     eyebrow: "Where we work",
     title: "Rooted in the hill country",
     subtitle:
-      "Six branches across the Central and Uva provinces, growing with the communities we serve.",
+      "Seven branches across the Central, Uva and Southern provinces, growing with the communities we serve.",
   },
 
   gallery: {
@@ -244,7 +244,7 @@ const en = {
     statsTitle: "Trusted at scale",
     stats: [
       { value: "5+", label: "Years of service" },
-      { value: "6", label: "Branches" },
+      { value: "7", label: "Branches" },
       { value: "10,000+", label: "Customers served" },
       { value: "3", label: "Provinces covered" },
     ],
@@ -316,7 +316,7 @@ const en = {
     typeLabel: "Type",
     openings: [
       { role: "Branch Manager", department: "Operations", location: "Islandwide", type: "Full-time" },
-      { role: "Marketing Executive", department: "Marketing", location: "Head Office", type: "Full-time" },
+      { role: "Marketing Executive", department: "Marketing", location: "Islandwide", type: "Full-time" },
       { role: "Field Recovery Officer", department: "Collections", location: "Central & Uva", type: "Full-time" },
       { role: "Customer Relationship Officer", department: "Front Office", location: "Central & Uva", type: "Full-time" },
     ],
@@ -362,6 +362,8 @@ const en = {
     ],
     stillHaveQuestions: "Still have questions?",
     contactPrompt: "Our team is happy to help in Sinhala, Tamil or English.",
+    disclaimer:
+      "These are general answers. Final eligibility, rates and repayment terms are assessed individually and may vary with your personal credit rating, and specific terms and conditions may apply to each risk profile.",
   },
 
   form: {

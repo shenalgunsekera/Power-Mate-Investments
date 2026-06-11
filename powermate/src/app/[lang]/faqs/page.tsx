@@ -59,6 +59,11 @@ export default async function FaqsPage({ params }: PageProps<"/[lang]/faqs">) {
           <div>
             <Accordion items={f.items} />
 
+            {/* Disclaimer */}
+            <p className="mt-8 rounded-xl border border-line bg-surface px-5 py-4 text-sm leading-relaxed text-ink-soft">
+              {f.disclaimer}
+            </p>
+
             {/* Mobile CTA */}
             <div className="mt-10 rounded-2xl border border-brand-200 bg-brand-50 p-6 lg:hidden">
               <p className="font-semibold text-brand-800">{f.stillHaveQuestions}</p>
