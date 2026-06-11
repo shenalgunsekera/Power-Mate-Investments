@@ -3,9 +3,9 @@ import path from "path";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import { ChevronDown } from "lucide-react";
 import { isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
-import { Reveal } from "@/components/ui/reveal";
 import { CtaBand } from "@/components/sections/cta-band";
 
 export async function generateMetadata({
@@ -22,29 +22,35 @@ export async function generateMetadata({
   };
 }
 
-/** Sections, each backed by a folder under public/media/gallery. */
-const SECTIONS = [
+/** Four top sections; each holds one or more photo groups (sub-sections). */
+const SECTIONS: {
+  title: string;
+  subtitle: string;
+  groups: { dir: string; label?: string }[];
+}[] = [
   {
-    dir: "community",
-    title: "Our commitment to the communities we serve",
+    title: "Our commitment to the customers we serve",
     subtitle:
       "Proud sponsors of the 2025 Annual Inter-Collegiate Cricket Tournament, organised by Dharmaraja College.",
+    groups: [{ dir: "community", label: "Annual Inter-Collegiate Cricket Tournament 2025 · Dharmaraja College" }],
   },
   {
-    dir: "talent",
-    title: "Developing and empowering our people",
-    subtitle:
-      "Corporate etiquette and professional-conduct training that helps our team grow.",
+    title: "Our talent development and empowerment",
+    subtitle: "Investing in our team so they can serve you better.",
+    groups: [{ dir: "talent", label: "Corporate Etiquette & Professional Conduct" }],
   },
   {
-    dir: "bandarawela",
-    title: "Our Bandarawela branch opening",
-    subtitle: "Welcoming the Uva community as we opened our doors in Bandarawela.",
+    title: "Our branch expansions",
+    subtitle: "Bringing Power Mate Investment closer to more communities.",
+    groups: [
+      { dir: "bandarawela", label: "Bandarawela branch opening" },
+      { dir: "mahiyanganaya", label: "Mahiyanganaya branch opening" },
+    ],
   },
   {
-    dir: "mahiyanganaya",
-    title: "Our Mahiyanganaya branch opening",
-    subtitle: "Bringing our services closer to families and businesses in Mahiyanganaya.",
+    title: "Our commitment",
+    subtitle: "Standing with the communities we are proud to be part of.",
+    groups: [],
   },
 ];
 
@@ -61,6 +67,27 @@ function imagesFor(dir: string): string[] {
   }
 }
 
+function GalleryGrid({ images, alt }: { images: string[]; alt: string }) {
+  return (
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {images.map((src) => (
+        <div
+          key={src}
+          className="group relative aspect-4/3 overflow-hidden rounded-2xl bg-brand-100"
+        >
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default async function GalleryPage({
   params,
 }: {
@@ -72,9 +99,12 @@ export default async function GalleryPage({
   const dict = await getDictionary(locale);
   const g = dict.gallery;
 
-  const sections = SECTIONS.map((s) => ({ ...s, images: imagesFor(s.dir) })).filter(
-    (s) => s.images.length > 0,
-  );
+  const sections = SECTIONS.map((s) => ({
+    ...s,
+    groups: s.groups
+      .map((gr) => ({ ...gr, images: imagesFor(gr.dir) }))
+      .filter((gr) => gr.images.length > 0),
+  })).filter((s) => s.groups.length > 0);
 
   return (
     <>
@@ -85,7 +115,7 @@ export default async function GalleryPage({
         </div>
         <div className="container-pm relative max-w-3xl">
           <span className="kicker kicker--dark mb-4 block">{g.eyebrow}</span>
-          <h1 className="font-display text-balance text-[clamp(2.2rem,5vw,3.5rem)] font-extrabold leading-[1.03] tracking-[-0.025em]">
+          <h1 className="font-display text-balance text-[clamp(2.2rem,5vw,3.5rem)] font-extrabold leading-[1.03] tracking-tight">
             {g.title}
           </h1>
           <p className="mt-6 max-w-[56ch] text-pretty text-[1.1rem] leading-relaxed text-brand-100">
@@ -95,48 +125,59 @@ export default async function GalleryPage({
         <div aria-hidden className="mt-14 h-10 bg-bg [clip-path:ellipse(120%_100%_at_50%_100%)]" />
       </section>
 
-      {/* Sections */}
-      {sections.map((section, si) => (
-        <section
-          key={section.dir}
-          className={si % 2 === 1 ? "section-pad bg-surface" : "section-pad bg-bg"}
-        >
-          <div className="container-pm">
-            <Reveal kind="up" className="max-w-2xl">
-              <div className="flex items-baseline gap-4">
-                <span className="font-display text-sm font-bold tabular text-brand-400">
-                  {String(si + 1).padStart(2, "0")}
-                </span>
-                <h2 className="font-display text-balance text-[clamp(1.6rem,3.5vw,2.4rem)] font-bold leading-tight tracking-[-0.02em] text-ink">
-                  {section.title}
-                </h2>
-              </div>
-              <p className="mt-3 max-w-[60ch] text-[1.02rem] leading-relaxed text-ink-soft">
-                {section.subtitle}
-              </p>
-            </Reveal>
+      {/* Collapsible sections */}
+      <section className="section-pad bg-bg">
+        <div className="container-pm flex max-w-5xl flex-col gap-5">
+          {sections.map((section, si) => {
+            const total = section.groups.reduce((n, gr) => n + gr.images.length, 0);
+            return (
+              <details
+                key={section.title}
+                open={si === 0}
+                className="pm-acc group overflow-hidden rounded-3xl border border-line bg-bg transition-shadow open:shadow-(--shadow-md)"
+              >
+                <summary className="flex cursor-pointer list-none items-center gap-4 p-6 transition-colors hover:bg-brand-50/40 sm:p-7 [&::-webkit-details-marker]:hidden">
+                  <span className="font-display text-sm font-bold tabular tabular-nums text-brand-400">
+                    {String(si + 1).padStart(2, "0")}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <h2 className="font-display text-[clamp(1.2rem,2.6vw,1.65rem)] font-bold tracking-[-0.015em] text-ink">
+                      {section.title}
+                    </h2>
+                    <p className="mt-1 text-sm leading-relaxed text-ink-soft">{section.subtitle}</p>
+                  </div>
+                  <span className="hidden shrink-0 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 sm:block">
+                    {total} photos
+                  </span>
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-line text-brand-700 transition-transform duration-300 group-open:rotate-180">
+                    <ChevronDown className="size-5" aria-hidden />
+                  </span>
+                </summary>
 
-            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {section.images.map((src, i) => (
-                <Reveal
-                  key={src}
-                  kind="up"
-                  delay={(i % 3) * 0.05}
-                  className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-brand-100"
-                >
-                  <Image
-                    src={src}
-                    alt={`${section.title} — Power Mate Investment`}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.05]"
-                  />
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      ))}
+                <div className="pm-acc-body flex flex-col gap-10 border-t border-line px-6 pb-9 pt-8 sm:px-7">
+                  {section.groups.map((gr) => (
+                    <div key={gr.dir} className="flex flex-col gap-4">
+                      {gr.label && (
+                        <div className="flex items-center gap-3">
+                          <span className="h-px w-6 shrink-0 rounded bg-brand-300" />
+                          <h3 className="font-display text-[0.95rem] font-bold tracking-[-0.01em] text-brand-800">
+                            {gr.label}
+                          </h3>
+                          <span className="text-xs text-ink-faint tabular">{gr.images.length}</span>
+                        </div>
+                      )}
+                      <GalleryGrid
+                        images={gr.images}
+                        alt={`${gr.label ?? section.title} — Power Mate Investment`}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </details>
+            );
+          })}
+        </div>
+      </section>
 
       <CtaBand locale={locale} dict={dict} />
     </>
