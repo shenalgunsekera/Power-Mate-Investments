@@ -126,30 +126,55 @@ export default async function GalleryPage({
       </section>
 
       {/* Collapsible sections */}
-      <section className="section-pad bg-bg">
+      <section className="section-pad bg-surface">
         <div className="container-pm flex max-w-5xl flex-col gap-5">
           {sections.map((section, si) => {
             const total = section.groups.reduce((n, gr) => n + gr.images.length, 0);
+            const preview = section.groups.flatMap((gr) => gr.images).slice(0, 4);
             return (
               <details
                 key={section.title}
                 open={si === 0}
-                className="pm-acc group overflow-hidden rounded-3xl border border-line bg-bg transition-shadow open:shadow-(--shadow-md)"
+                className="pm-acc group relative overflow-hidden rounded-[1.75rem] border border-line bg-bg shadow-(--shadow-sm) transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-(--shadow-lg) open:border-brand-200 open:shadow-(--shadow-md)"
               >
-                <summary className="flex cursor-pointer list-none items-center gap-4 p-6 transition-colors hover:bg-brand-50/40 sm:p-7 [&::-webkit-details-marker]:hidden">
-                  <span className="font-display text-sm font-bold tabular tabular-nums text-brand-400">
+                {/* maroon glow on hover / open */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute -right-24 -top-24 size-56 rounded-full bg-brand-100 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-60 group-open:opacity-70"
+                />
+
+                <summary className="relative flex cursor-pointer list-none items-center gap-4 p-6 sm:gap-6 sm:p-8 [&::-webkit-details-marker]:hidden">
+                  <span className="font-display text-3xl font-extrabold leading-none tabular tabular-nums text-brand-200 transition-colors duration-300 group-open:text-brand-600 sm:text-4xl">
                     {String(si + 1).padStart(2, "0")}
                   </span>
+
                   <div className="min-w-0 flex-1">
-                    <h2 className="font-display text-[clamp(1.2rem,2.6vw,1.65rem)] font-bold tracking-[-0.015em] text-ink">
+                    <h2 className="font-display text-[clamp(1.3rem,2.7vw,1.8rem)] font-bold tracking-[-0.02em] text-ink">
                       {section.title}
                     </h2>
-                    <p className="mt-1 text-sm leading-relaxed text-ink-soft">{section.subtitle}</p>
+                    <p className="mt-1.5 max-w-[58ch] text-sm leading-relaxed text-ink-soft">
+                      {section.subtitle}
+                    </p>
                   </div>
-                  <span className="hidden shrink-0 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 sm:block">
+
+                  {/* thumbnail peek */}
+                  <div className="hidden items-center lg:flex">
+                    {preview.map((src, i) => (
+                      <span
+                        key={src}
+                        className="relative -ml-3 size-12 overflow-hidden rounded-xl shadow-(--shadow-sm) ring-2 ring-bg first:ml-0"
+                        style={{ zIndex: preview.length - i }}
+                      >
+                        <Image src={src} alt="" fill sizes="48px" className="object-cover" />
+                      </span>
+                    ))}
+                  </div>
+
+                  <span className="hidden shrink-0 whitespace-nowrap rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 sm:block">
                     {total} photos
                   </span>
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-line text-brand-700 transition-transform duration-300 group-open:rotate-180">
+
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-50 text-brand-700 transition-all duration-300 group-hover:bg-brand-100 group-open:rotate-180 group-open:bg-(image:--grad-brand) group-open:text-white">
                     <ChevronDown className="size-5" aria-hidden />
                   </span>
                 </summary>
