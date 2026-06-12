@@ -4,9 +4,6 @@ import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
-/** Optimised large source via Next's image endpoint (no next/image quirks). */
-const big = (src: string) => `/_next/image?url=${encodeURIComponent(src)}&w=1920&q=75`;
-
 /**
  * Clickable photo grid + a simple, branded full-screen preview.
  * Click a photo to open it centered in a "Power Mate" frame; click anywhere
@@ -75,7 +72,7 @@ export function GalleryLightbox({
 
       {open && (
         <div
-          className="fixed inset-0 z-900 flex items-center justify-center bg-brand-950/95 p-4 sm:p-6"
+          className="fixed inset-0 z-900 flex items-center justify-center bg-[oklch(15%_0.01_18)] p-4 sm:p-6"
           onClick={close}
           role="dialog"
           aria-modal="true"
@@ -116,14 +113,18 @@ export function GalleryLightbox({
           {/* Power Mate frame */}
           <figure
             onClick={(e) => e.stopPropagation()}
-            className="flex flex-col overflow-hidden rounded-2xl bg-brand-950 shadow-2xl ring-1 ring-white/10"
+            className="flex w-[min(92vw,860px)] flex-col overflow-hidden rounded-2xl bg-[oklch(20%_0.02_18)] shadow-2xl ring-1 ring-white/10"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={big(images[index])}
-              alt={alt}
-              className="block max-h-[78vh] max-w-[90vw] object-contain"
-            />
+            <div className="relative h-[56vh] w-full sm:h-[66vh]">
+              <Image
+                src={images[index]}
+                alt={alt}
+                fill
+                sizes="(max-width: 900px) 92vw, 860px"
+                className="object-contain"
+                priority
+              />
+            </div>
             <figcaption className="flex items-center justify-between gap-4 bg-(image:--grad-brand) px-5 py-3 text-white">
               <span className="flex items-center gap-2.5">
                 <span
