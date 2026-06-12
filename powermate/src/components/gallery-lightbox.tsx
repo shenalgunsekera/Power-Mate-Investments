@@ -127,16 +127,15 @@ export function GalleryLightbox({
               initial={{ opacity: 0, scale: reduce ? 1 : 0.96, y: reduce ? 0 : 8 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: reduce ? 0 : 0.35, ease: EASE }}
-              className="flex max-h-full w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-brand-950 shadow-2xl ring-1 ring-white/10"
+              className="flex w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-brand-950 shadow-2xl ring-1 ring-white/10"
             >
-              <div className="relative flex min-h-0 flex-1 items-center justify-center">
+              <div className="relative h-[58vh] w-full sm:h-[68vh]">
                 <Image
                   src={images[index]}
                   alt={alt}
-                  width={1600}
-                  height={1100}
-                  sizes="100vw"
-                  className="h-auto max-h-[76vh] w-auto max-w-full object-contain"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 896px"
+                  className="object-contain"
                   priority
                 />
               </div>
