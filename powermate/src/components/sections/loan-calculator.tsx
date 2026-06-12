@@ -2,10 +2,10 @@
 
 import { useId, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Calculator } from "lucide-react";
+import { ArrowRight, Calculator, Download } from "lucide-react";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries";
-import { productTerms, productOrder, type ProductKey } from "@/data/site";
+import { productTerms, productOrder, company, type ProductKey } from "@/data/site";
 import { formatLKR, localeHref, cn } from "@/lib/utils";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Reveal } from "@/components/ui/reveal";
@@ -52,6 +52,117 @@ export function LoanCalculator({ locale, dict }: { locale: Locale; dict: Diction
   const amountId = useId();
   const termId = useId();
   const rateId = useId();
+
+  async function downloadPdf() {
+    const { jsPDF } = await import("jspdf");
+    const doc = new jsPDF({ unit: "pt", format: "a4" });
+    const W = doc.internal.pageSize.getWidth();
+    const H = doc.internal.pageSize.getHeight();
+    const M = 40;
+    const maroon: [number, number, number] = [124, 22, 35];
+    const ink: [number, number, number] = [33, 28, 28];
+    const gray: [number, number, number] = [110, 105, 105];
+    const money = (n: number) => "LKR " + Math.round(n).toLocaleString("en-US");
+    // Built-in PDF font is Latin-only, so always label products in English.
+    const enNames: Record<ProductKey, string> = {
+      micro: "Micro Loan",
+      sme: "SME Loan",
+      agriculture: "Agriculture Loan",
+      gold: "Gold Loan",
+      leasing: "Leasing",
+      insurance: "Insurance Solutions",
+    };
+    const productName = enNames[product];
+
+    // Header band
+    doc.setFillColor(...maroon);
+    doc.rect(0, 0, W, 96, "F");
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(20);
+    doc.text("POWER MATE INVESTMENT", M, 50);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text("Strengthening Your Financial Power", M, 70);
+
+    // Title
+    doc.setTextColor(...ink);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(18);
+    doc.text("Loan Estimate", M, 142);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.setTextColor(...gray);
+    doc.text(
+      "Prepared on " +
+        new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }),
+      M,
+      160,
+    );
+
+    // Monthly payment highlight
+    doc.setFillColor(248, 235, 236);
+    doc.roundedRect(M, 182, W - M * 2, 80, 10, 10, "F");
+    doc.setTextColor(...gray);
+    doc.setFontSize(11);
+    doc.text("Estimated monthly payment", M + 22, 212);
+    doc.setTextColor(...maroon);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(26);
+    doc.text(money(result.monthly) + "  / month", M + 22, 244);
+
+    // Details
+    let y = 306;
+    const rows: [string, string][] = [
+      ["Loan type", productName],
+      ["Loan amount", money(amount)],
+      ["Repayment period", months + " months"],
+      ["Indicative annual rate", rate + "%"],
+      ["Total interest", money(result.interest)],
+      ["Total payable", money(result.total)],
+    ];
+    doc.setFontSize(11);
+    for (const [label, value] of rows) {
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(...gray);
+      doc.text(label, M, y);
+      doc.setFont("helvetica", "bold");
+      doc.setTextColor(...ink);
+      doc.text(value, W - M, y, { align: "right" });
+      doc.setDrawColor(232, 226, 226);
+      doc.line(M, y + 11, W - M, y + 11);
+      y += 30;
+    }
+
+    // Disclaimer
+    y += 14;
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9);
+    doc.setTextColor(...gray);
+    const disclaimer =
+      "This is an indicative estimate only, calculated using the reducing-balance method. Final eligibility, rates and repayment terms are assessed individually and may vary with your personal credit rating, with specific terms and conditions for each risk profile.";
+    doc.text(doc.splitTextToSize(disclaimer, W - M * 2), M, y);
+
+    // Footer
+    const fy = H - 72;
+    doc.setDrawColor(...maroon);
+    doc.setLineWidth(1.2);
+    doc.line(M, fy, W - M, fy);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(9);
+    doc.setTextColor(...ink);
+    doc.text("Power Mate Investment", M, fy + 20);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(...gray);
+    doc.text(
+      `Hotline ${company.hotline}    WhatsApp ${company.whatsapp}    ${company.email}`,
+      M,
+      fy + 36,
+    );
+    doc.text(company.address, M, fy + 50);
+
+    doc.save(`Power-Mate-Loan-Estimate-${productName.replace(/\s+/g, "-")}.pdf`);
+  }
 
   return (
     <section id="calculator" className="section-pad-tight scroll-mt-20 bg-bg">
@@ -197,13 +308,23 @@ export function LoanCalculator({ locale, dict }: { locale: Locale; dict: Diction
             </dl>
 
             <div className="relative flex flex-col gap-3">
-              <Link
-                href={localeHref(locale, `/contact?intent=apply&product=${product}`)}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-white px-6 font-semibold text-brand-900 transition-transform hover:-translate-y-0.5"
-              >
-                {c.applyCta}
-                <ArrowRight className="size-4" aria-hidden />
-              </Link>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href={localeHref(locale, `/contact?intent=apply&product=${product}`)}
+                  className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-pill bg-white px-6 font-semibold text-brand-900 transition-transform hover:-translate-y-0.5"
+                >
+                  {c.applyCta}
+                  <ArrowRight className="size-4" aria-hidden />
+                </Link>
+                <button
+                  type="button"
+                  onClick={downloadPdf}
+                  className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-pill border border-white/40 px-5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                >
+                  <Download className="size-4" aria-hidden />
+                  PDF
+                </button>
+              </div>
               <p className="text-xs leading-relaxed text-brand-100/90">{c.disclaimer}</p>
             </div>
           </div>
