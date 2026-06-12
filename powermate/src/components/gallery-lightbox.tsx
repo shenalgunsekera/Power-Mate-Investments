@@ -78,7 +78,7 @@ export function GalleryLightbox({
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[900] flex items-center justify-center bg-brand-950/90 p-4 backdrop-blur-md sm:p-8"
+            className="fixed inset-0 z-[900] flex items-center justify-center bg-brand-950/95 p-4 sm:p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -93,7 +93,7 @@ export function GalleryLightbox({
               type="button"
               onClick={close}
               aria-label="Close preview"
-              className="absolute right-4 top-4 z-10 flex size-11 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/20 backdrop-blur transition-colors hover:bg-white/20 sm:right-6 sm:top-6"
+              className="absolute right-4 top-4 z-10 flex size-11 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-white/20 transition-colors hover:bg-white/25 sm:right-6 sm:top-6"
             >
               <X className="size-5" aria-hidden />
             </button>
@@ -105,7 +105,7 @@ export function GalleryLightbox({
                   type="button"
                   onClick={(e) => { e.stopPropagation(); prev(); }}
                   aria-label="Previous photo"
-                  className="absolute left-3 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/20 backdrop-blur transition-colors hover:bg-white/20 sm:left-6"
+                  className="absolute left-3 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-white/20 transition-colors hover:bg-white/25 sm:left-6"
                 >
                   <ChevronLeft className="size-6" aria-hidden />
                 </button>
@@ -113,7 +113,7 @@ export function GalleryLightbox({
                   type="button"
                   onClick={(e) => { e.stopPropagation(); next(); }}
                   aria-label="Next photo"
-                  className="absolute right-3 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/20 backdrop-blur transition-colors hover:bg-white/20 sm:right-6"
+                  className="absolute right-3 top-1/2 z-10 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-white/20 transition-colors hover:bg-white/25 sm:right-6"
                 >
                   <ChevronRight className="size-6" aria-hidden />
                 </button>
