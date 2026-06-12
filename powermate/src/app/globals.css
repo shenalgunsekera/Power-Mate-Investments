@@ -214,6 +214,12 @@ html[lang="ta"] {
 @layer utilities {
   /* Fine film grain — fixed overlay, sits above bg, below content.
      Adds tactile "weight" (brass-and-leather brief) without muddying text. */
+  /* Hidden while a lightbox is open — its full-screen multiply blend
+     re-composites on every hover and causes flicker over the overlay. */
+  html[data-lightbox="open"] .grain-overlay {
+    display: none;
+  }
+
   .grain-overlay {
     position: fixed;
     inset: 0;
